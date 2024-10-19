@@ -1,0 +1,38 @@
+.main_header{
+    background-image: url(../assets/header.png);
+    background-position: center center;
+    background-size: cover;
+   
+}
+
+.overlay{
+    background-color: black;
+    opacity: .4;
+    width: 100%;
+}
+
+.main {
+ gap: 48px;
+}
+
+.typo{
+    font-size: 72px;
+    color: white;
+  font-weight: 900;
+    text-align: center;
+    width: 870px;
+    line-height: 89px;
+    font-style: italic;
+}
+
+@media only screen and (max-width: 767px) {
+    .typo{
+        font-size: 36px;
+        color: white;
+      font-weight: 700;
+        text-align: center;
+        width: 100%;
+        line-height: 2.5rem;
+        font-style: italic;
+    }
+  }

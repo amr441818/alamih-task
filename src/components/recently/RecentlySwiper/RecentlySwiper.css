@@ -1,0 +1,60 @@
+
+.recentlySwiper .swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .recentlySwiper .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+   
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .recentlySwiper .swiper-slide img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    
+  }
+
+/* Pagination and Arrows Container */
+.recentlySwiper .custom-pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 15%;
+  margin: 2rem auto;
+}
+/* Style for the Pagination Bullets */
+.recentlySwiper .custom-pagination  {
+display: flex;
+justify-content: center;
+  align-items: center; 
+  width: 100%;
+}
+
+.recentlySwiper .custom-pagination .swiper-pagination-bullet-active {
+  background-color: black;
+  opacity: 1;
+}
+
+/* Custom Previous and Next Arrows */
+.recentlySwiper .custom-prev-btn,
+.custom-next-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 24px;
+  
+  
+  padding: 10px;
+  
+}
+
+
