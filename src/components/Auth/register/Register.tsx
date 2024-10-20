@@ -96,7 +96,7 @@ const Register = () => {
             toast.success(toastData?.data?.message, {});
             console.log(toastData);
             setFormData(initialFormData)
-            redirect('/login')
+            redirect("/Verify")
             // localStorage.setItem(
             //     'deliProviderToken',
             //     // @ts-ignore
@@ -157,7 +157,7 @@ const Register = () => {
             const data = await register(formDataa)
             console.log(data);
             setToastData(data);
-            
+           
         
           
             setErrors({});

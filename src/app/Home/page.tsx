@@ -8,7 +8,7 @@ import Recently from "@/components/recently/Recently";
 
 import Sell from "@/components/sell/Sell";
 
-import Header from "@/header/Header";
+import Header from "@/components/header/Header";
 
 
 export default function Home() {
