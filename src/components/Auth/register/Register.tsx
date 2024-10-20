@@ -239,7 +239,7 @@ const Register = () => {
 
           </form>
           <div className="flex justify-center">
-<Link href="/login" className=' text-black2 font-semibold'> <span className='text-black1 font-normal'>Have an account? </span>login</Link>
+<Link href="/" className=' text-black2 font-semibold'> <span className='text-black1 font-normal'>Have an account? </span>login</Link>
 </div>
         </div>
     </div>
