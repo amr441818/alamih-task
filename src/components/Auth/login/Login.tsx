@@ -11,7 +11,15 @@ import Link from 'next/link'
 import CusttomButton from '@/components/reuseableComponents/CusttomButton'
 import { useLoginMutation } from '@/api/AuthApiSlice'
 import { redirect } from "next/navigation";
-
+import { z } from 'zod'
+const formSchema = 
+    z.object({
+        email: z.string().email(` please enter a valid email`),
+        password: z
+            .string()
+            .min(3, "Password must be at least 3 characters")
+            
+    });
 interface signInfromData {
     email: string;
     password: string;
@@ -57,11 +65,15 @@ const Login = () => {
             );
             setToastData({});
             // navigate('/Categories/List');
-            redirect('/');
+            redirect('/Home');
         }
 
         if (toastData?.status === 422) {
             toast.error(toastData?.response.data?.message, {});
+            setToastData({});
+        }
+        if (toastData?.error?.status === 403) {
+            toast.error(toastData?.error?.data?.message, {});
             setToastData({});
         }
         if (toastData?.error?.data?.status === 500) {
@@ -83,18 +95,17 @@ const Login = () => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        // navigate('/Restaurant/Add');
 
-        // const result = loginSchema.safeParse(formData);
-        // // phoneSchema.safeParse(phone);
+        const result = formSchema.safeParse(formData);
+      
 
-        // if (!result.success) {
-        //     // @ts-ignore
-        //     setErrors(result.error.formErrors.fieldErrors);
-        //     console.log(result.error.formErrors.fieldErrors);
-        //     return;
+        if (!result.success) {
+            // @ts-ignore
+            setErrors(result.error.formErrors.fieldErrors);
+            console.log(result.error.formErrors.fieldErrors);
+            return;
 
-        // }
+        }
 
         const formDataa = new FormData()
         formDataa.append('email', formData.email);
@@ -116,7 +127,7 @@ const Login = () => {
     };
     console.log(formData)
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 h-screen   '>
+    <div className='grid grid-cols-1 lg:grid-cols-2 h-screen   '>
 
 
 
@@ -136,8 +147,17 @@ const Login = () => {
 <div className="flex flex-col gap-8">
 
 <InputComponent type="email" placeholder="Enter your email address" name='email' onChange={handleChange} value={formData.email}  label="Email Address" icon={<TfiEmail className='size-5' />} />
-<PasswordInput value={formData.password} onChange={handleChange} />
-
+{errors.email && (
+                                <p className="text-[#FF0000] text-[12px]">
+                                    {errors.email}
+                                </p>
+                            )}
+<PasswordInput value={formData.password} onChange={handleChange} name='password' />
+{errors.password && (
+                                <p className="text-[#FF0000] text-[12px]">
+                                    {errors.password}
+                                </p>
+                            )}
 </div>
 <div className="flex">
 <Link href="" className='font-medium text-black2'>Forget your password ?</Link>

@@ -14,7 +14,43 @@ import { useLoginMutation, useRegisterMutation } from '@/api/AuthApiSlice'
 import Upload_cover from './UploadImage'
 import NationalLabelcon from '@/assets/icons/NationalLabelcon'
 import { BiUser } from 'react-icons/bi'
-
+import { z } from 'zod'
+import { redirect } from 'next/navigation'
+const formSchema = 
+    z.object({
+        name: z
+            .string()
+            
+            .min(1, "name required ")
+            .max(100,'name must be less than 100 characters')  .refine((value) => value.trim().split(/\s+/).length >= 2, {
+                message: "name must be at least two words",
+            }),
+        email: z.string().email(` please enter a valid email`),
+        terms: z.string().refine((value) => value === "1", {
+            message: " you must accept terms and conditions to continue",
+          }),
+        password: z
+        .string()
+        .min(3, ` Password must be at least 3 characters`)
+        .refine(
+          (value) => /[A-Z]/.test(value), 
+          {
+            message: `one letters, Capital`,
+          }
+        )
+        ,
+        password_confirmation: z.string(),
+            
+    })  .refine(
+        (data) => {
+         
+          return data.password === data.password_confirmation;
+        },
+        {
+          message: "passwords  not match",
+          path: ["password_confirmation"], 
+        }
+      );
 interface signInfromData {
     name: string;
     email: string;
@@ -59,6 +95,8 @@ const Register = () => {
             console.log(toastData)
             toast.success(toastData?.data?.message, {});
             console.log(toastData);
+            setFormData(initialFormData)
+            redirect('/login')
             // localStorage.setItem(
             //     'deliProviderToken',
             //     // @ts-ignore
@@ -68,8 +106,8 @@ const Register = () => {
             // navigate('/Categories/List');
         }
 
-        if (toastData?.status === 422) {
-            toast.error(toastData?.response.data?.message, {});
+        if (toastData?.error?.status === 422) {
+            toast.error(toastData?.error?.data?.message, {});
             setToastData({});
         }
         if (toastData?.error?.data?.status === 500) {
@@ -93,16 +131,16 @@ const Register = () => {
         e.preventDefault();
         // navigate('/Restaurant/Add');
 
-        // const result = loginSchema.safeParse(formData);
+        const result = formSchema.safeParse(formData);
         // // phoneSchema.safeParse(phone);
 
-        // if (!result.success) {
-        //     // @ts-ignore
-        //     setErrors(result.error.formErrors.fieldErrors);
-        //     console.log(result.error.formErrors.fieldErrors);
-        //     return;
+        if (!result.success) {
+            // @ts-ignore
+            setErrors(result.error.formErrors.fieldErrors);
+            console.log(result.error.formErrors.fieldErrors);
+            return;
 
-        // }
+        }
 
         const formDataa = new FormData()
         formDataa.append('full_name', formData.name);
@@ -110,6 +148,7 @@ const Register = () => {
         formDataa.append('password', formData.password);
         formDataa.append('password_confirmation', formData.password_confirmation);
         formDataa.append('terms', formData.terms);
+        //@ts-ignore
         formDataa.append('national_image', file);
         
 
@@ -118,6 +157,8 @@ const Register = () => {
             const data = await register(formDataa)
             console.log(data);
             setToastData(data);
+            
+        
           
             setErrors({});
         } catch (err) {
@@ -129,7 +170,7 @@ const Register = () => {
     };
     console.log(formData)
   return (
-    <div className='grid grid-cols-1 md:grid-cols-2 h-screen '>
+    <div className='grid grid-cols-1 lg:grid-cols-2 h-screen '>
 
 
 
@@ -147,10 +188,32 @@ const Register = () => {
 <div className="flex flex-col gap-4  justify-center w-full">
 <div className="flex flex-col gap-8">
 
-<InputComponent type="text" placeholder="Enter your full name" name='name' onChange={handleChange} value={formData.name}  label="Name" icon={<BiUser className='size-5' />} />
+
+<InputComponent type="text" placeholder="Enter your full name" name="name" onChange={handleChange} value={formData.name}  label="Name" icon={<BiUser className='size-5' />} />
+{errors.name && (
+                                <p className="text-[#FF0000] text-[12px]">
+                                    {errors.name}
+                                </p>
+                            )}
+
 <InputComponent type="email" placeholder="Enter your email address" name='email' onChange={handleChange} value={formData.email}  label="Email Address" icon={<TfiEmail className='size-5' />} />
+{errors.email && (
+                                <p className="text-[#FF0000] text-[12px]">
+                                    {errors.email}
+                                </p>
+                            )}
 <PasswordInput value={formData.password} onChange={handleChange} name="password" />
+{errors.password && (
+                                <p className="text-[#FF0000] text-[12px]">
+                                    {errors.password}
+                                </p>
+                            )}
 <PasswordInput value={formData.password_confirmation} onChange={handleChange} name="password_confirmation" />
+{errors.password_confirmation && (
+                                <p className="text-[#FF0000] text-[12px]">
+                                    {errors.password_confirmation}
+                                </p>
+                            )}
 <div className="flex flex-col gap-2 w-full">
                   <label className="flex gap-2 items-center text-[16px]  text-black2"> <NationalLabelcon/>  National ID Image</label>
                   <Upload_cover setFile={setFile}/>
@@ -158,11 +221,18 @@ const Register = () => {
 </div>
 <div className="flex justify-center lg:justify-start gap-2 items-center">
 <input type="checkbox" className='w-5 h-5' name='terms' onChange={e=> setFormData({...formData, terms:e.target.checked === true? "1": "0"})}  />
-<div className=' text-black1  font-semibold'> <span className='text-[#BBB8BF] font-normal'>Agree to the </span> terms and conditions</div>
-
+<div className=' text-black1  font-semibold'>
+     <span className='text-[#BBB8BF] font-normal'>Agree to the </span> terms and conditions
+    
+     </div>
+    
 
 </div>
-
+{errors.terms && (
+                                <p className="text-[#FF0000] text-[12px]">
+                                    {errors.terms}
+                                </p>
+                            )}
                   <CusttomButton type="submit" title='Create account' />   
 </div>
 

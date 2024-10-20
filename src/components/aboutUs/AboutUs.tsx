@@ -13,18 +13,20 @@ const AboutUs = () => {
     <div className=" container flex flex-col gap-[56px] w-full ">
 
    
-    <div className='grid grid-cols-1 md:grid-cols-2  gap-[62px] '>
-     <div className="flex">
-        <Image src={aboutImage} className='w-full h-full' alt='about us image' />
+    <div className='grid grid-cols-1 lg:grid-cols-2  gap-[62px] '>
+     <div className="flex justify-center order-2 lg:order-1">
+        <Image src={aboutImage} className='w-[98%] lg:w-full md:h-[660px]' alt='about us image' />
      </div>
-     <div className="flex flex-col items-center justify-center gap-[22px]">
-       <h3 className=' text-[36px] md:text-[40px] font-[700] md:font-[900] text-center md:text-start'>We Help You Realize Your Dream Property</h3>
-       <div className="flex flex-col gap-5">
-        <p className='text-[16px] text-center md:text-start'>Donec bibendum nibh quis nisl luctus, at aliquet ipsum bibendum. Fusce at dui tincidunt nulla semper venenatis at et magna. Mauris turpis lorem, ultricies vel justo sed, ultrices auctor nisi.
-        </p>
-       <p className='text-center md:text-start'>Donec bibendum nibh quis nisl luctus, at aliquet ipsum bibendum. Fusce at dui tincidunt nulla semper.</p>
 
-      <div className="flex justify-center md:justify-start "> <CusttomButton title='Read More' /></div>
+
+     <div className="flex flex-col items-center justify-center gap-[22px]">
+       <h3 className=' text-[36px] md:text-[40px] font-[700] md:font-[900] text-center lg:text-start'>We Help You Realize Your Dream Property</h3>
+       <div className="flex flex-col gap-5">
+        <p className='text-[16px] text-center lg:text-start'>Donec bibendum nibh quis nisl luctus, at aliquet ipsum bibendum. Fusce at dui tincidunt nulla semper venenatis at et magna. Mauris turpis lorem, ultricies vel justo sed, ultrices auctor nisi.
+        </p>
+       <p className='text-center lg:text-start'>Donec bibendum nibh quis nisl luctus, at aliquet ipsum bibendum. Fusce at dui tincidunt nulla semper.</p>
+
+      <div className="flex justify-center lg:justify-start "> <CusttomButton title='Read More' /></div>
        </div>
      </div>
 

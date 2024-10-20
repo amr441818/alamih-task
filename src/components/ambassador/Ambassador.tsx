@@ -7,7 +7,7 @@ const Ambassador = () => {
   return (
     <>
 
-    <div className="flex justify-center w-full ">
+    <div className="flex container justify-center w-full ">
 
    
     <div className='   grid grid-cols-12 bg-[#F8F8F7] gap-[34px] w-full '>

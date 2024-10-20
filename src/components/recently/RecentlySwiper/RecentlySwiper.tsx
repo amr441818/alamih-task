@@ -24,19 +24,24 @@ import "swiper/css/navigation";
 import './RecentlySwiper.css';
 
 
-import { Pagination, Navigation } from 'swiper/modules';
+import {Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 
 export default function RecentlySwiper() {
   return (
     <>
-    <div className="relative">
+    <div className=" flex justify-center relative m-1">
       <Swiper
         
         spaceBetween={30}
+        loop={true} 
         pagination={{
           clickable: true,
           el: ".custom-pagination", 
+        }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
         }}
         navigation={{
           prevEl: ".custom-prev-btn", 
@@ -53,20 +58,20 @@ export default function RecentlySwiper() {
             slidesPerView: 3, 
           },
         }}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation,Autoplay]}
         className="recentlySwiper"
         
       >
-        
+        <div className="">
         <SwiperSlide>
-          <div className="flex flex-col gap-4   ">
+          <div className="flex flex-col gap-4 w-full  ">
             
           <div className="flex relative">
             <div className="absolute overlay top-0 left-0 z-10   bg-black opacity-70 h-full w-full"></div>
             <div className="flex flex-col justify-between absolute  top-0 left-0 z-10 px-5 py-4 h-full w-full">
 
 <div className="flex items-center justify-between w-full ">
-  <div className="flex rounded-full w-10 h-10">
+  <div className="flex rounded-full justify-center w-10 h-10">
     <Image src={cardImage} alt='card image' className='w-full h-full' />
     </div>
     <button className="flex justify-center items-center w-10 h-10 bg-white rounded-full text-[#D20300]">
@@ -104,7 +109,7 @@ export default function RecentlySwiper() {
           <Image
               src={building1}
               alt="property-image"
-             className='w-10 '
+             className='w-full '
             />
           </div>
 
@@ -118,7 +123,7 @@ export default function RecentlySwiper() {
             <LuBath className='w-3 h-3'/>
               <p className='text-[14px]'>2 bathrooms</p>
             </div>
-            <div className="flex items-center gap-1">
+            <div className="flex flex-col  items-center gap-1 ">
             <LuBath className='w-3 h-3' />
               <p className='text-[14px]'>2 bathrooms</p>
             </div>
@@ -144,7 +149,7 @@ export default function RecentlySwiper() {
         
         
         <SwiperSlide>
-          <div className="flex flex-col gap-4   ">
+          <div className="flex flex-col gap-4  w-full  ">
             
           <div className="flex relative">
             <div className="absolute overlay top-0 left-0 z-10   bg-black opacity-70 h-full w-full"></div>
@@ -189,7 +194,7 @@ export default function RecentlySwiper() {
           <Image
               src={building2}
               alt="property-image"
-             className='w-10 '
+             className='w-full '
             />
           </div>
 
@@ -229,7 +234,7 @@ export default function RecentlySwiper() {
         
         
         <SwiperSlide>
-          <div className="flex flex-col gap-4   ">
+          <div className="flex flex-col gap-4 w-full   ">
             
           <div className="flex relative">
             <div className="absolute overlay top-0 left-0 z-10   bg-black opacity-70 h-full w-full"></div>
@@ -274,7 +279,7 @@ export default function RecentlySwiper() {
           <Image
               src={building3}
               alt="property-image"
-             className='w-10 '
+             className='w-full '
             />
           </div>
 
@@ -314,7 +319,7 @@ export default function RecentlySwiper() {
         
         
         <SwiperSlide>
-          <div className="flex flex-col gap-4   ">
+          <div className="flex flex-col gap-4  w-full ">
             
           <div className="flex relative">
             <div className="absolute overlay top-0 left-0 z-10   bg-black opacity-70 h-full w-full"></div>
@@ -396,7 +401,7 @@ export default function RecentlySwiper() {
           </div>
         </SwiperSlide>
       
-        
+        </div>
 
 
         <div className="flex items-center justify-center gap-4 mt-4 custom-pagination-container">

@@ -42,6 +42,14 @@ export const authApi = createApi({
       }),
     }),
  
+    subscribe: builder.mutation<any, any>({
+      query: (credentials) => ({
+        url: "/newsletter",
+        method: "POST",
+        body: credentials,
+      }),
+    }),
+ 
  
   }),
 });
@@ -49,5 +57,6 @@ export const authApi = createApi({
 export const {
   useLoginMutation,
   useRegisterMutation,
+  useSubscribeMutation
   
 } = authApi;

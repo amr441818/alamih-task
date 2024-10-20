@@ -18,19 +18,24 @@ import "swiper/css/navigation";
 import './PropertiesSwiper.css';
 
 
-import { Pagination, Navigation } from 'swiper/modules';
+import {Autoplay, Pagination, Navigation } from 'swiper/modules';
 import Image from 'next/image';
 
 export default function CustomSwiper() {
   return (
     <>
-    <div className="relative">
+    <div className="flex justify-center relative m-1">
       <Swiper
         
         spaceBetween={30}
+        loop={true} 
         pagination={{
           clickable: true,
           el: ".custom-pagination", 
+        }}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
         }}
         navigation={{
           prevEl: ".custom-prev-btn", 
@@ -47,13 +52,13 @@ export default function CustomSwiper() {
             slidesPerView: 3, 
           },
         }}
-        modules={[Pagination, Navigation]}
+        modules={[Pagination, Navigation,Autoplay]}
         className="mySwiper"
         
       >
         
         <SwiperSlide>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full">
             <Image
               src={pro1}
               alt="property-image"
@@ -70,7 +75,7 @@ export default function CustomSwiper() {
         </SwiperSlide>
       
         <SwiperSlide>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full">
             <Image
               src={pro2}
               alt="property-image"
@@ -87,7 +92,7 @@ export default function CustomSwiper() {
         </SwiperSlide>
       
         <SwiperSlide>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full">
             <Image
               src={pro3}
               alt="property-image"
@@ -104,7 +109,7 @@ export default function CustomSwiper() {
         </SwiperSlide>
       
         <SwiperSlide>
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 w-full">
             <Image
               src={pro1}
               alt="property-image"

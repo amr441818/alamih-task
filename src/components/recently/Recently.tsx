@@ -7,7 +7,7 @@ const Recently = () => {
     
     <h3 className='font-[900] text-[32px]'>Recently added</h3>
     
-    <div className="  w-full  p-10  ">
+    <div className="  w-full  m-auto   ">
           <RecentlySwiper/>
         </div>
     

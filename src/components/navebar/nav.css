@@ -1,6 +1,7 @@
 .mobile_nav {
-  background-color: white;
+  background-color: transparent;
   padding: 12px 16px;
+  width: 100%;
 }
 .gradiants {
   color: black;

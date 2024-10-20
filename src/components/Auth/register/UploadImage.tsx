@@ -32,7 +32,7 @@ const Upload_cover = (props: UploadImageProps) => {
     };
     return (
      <div  className="flex flex-col items-center w-full gap-[10px]">
-            <input type="file" ref={fileInputRef} onChange={handleFileChange} style={{ display: 'none' , width: "100%"}} accept="image/*" />
+            <input type="file" ref={fileInputRef}  onChange={handleFileChange} style={{ display: 'none' , width: "100%"}} accept="image/*" />
             <div         onClick={handleButtonClick}         className="flex cursor-pointer  w-full h-[80px]  border-[2px] border-[#2D2D2D] border-dotted justify-center items-center "
             >
             {imageSrc ? (
