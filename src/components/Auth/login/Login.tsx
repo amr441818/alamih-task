@@ -44,13 +44,13 @@ const Login = () => {
         setFormData({ ...formData, [name]: value });
     };
  
-    // useEffect(() => {
-    //     const token = localStorage.getItem('alamihToken');
-    //     console.log(token);    
-    //     if (token) {
-    //         redirect('/');
-    //     }
-    // }, []);
+    useEffect(() => {
+        const token = localStorage.getItem('alamihToken');
+        console.log(token);    
+        if (token) {
+            redirect('/');
+        }
+    }, []);
    
     useEffect(() => {
         console.log(toastData);
