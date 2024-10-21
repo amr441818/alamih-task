@@ -106,7 +106,7 @@ const Register = () => {
             // navigate('/Categories/List');
         }
 
-        if (toastData?.error?.status === 422) {
+        if (toastData?.error?.status === "422") {
             toast.error(toastData?.error?.data?.message, {});
             setToastData({});
         }
@@ -130,7 +130,7 @@ const Register = () => {
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
         // navigate('/Restaurant/Add');
-
+// console.log(file, formData?.value)
         const result = formSchema.safeParse(formData);
         // // phoneSchema.safeParse(phone);
 
