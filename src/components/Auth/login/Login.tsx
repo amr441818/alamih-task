@@ -48,7 +48,7 @@ const Login = () => {
         const token = localStorage.getItem('alamihToken');
         console.log(token);    
         if (token) {
-            redirect('/home');
+            redirect('/Home');
         }
     }, []);
    
